@@ -1,1 +1,4 @@
 Hello world!
+
+Added node modules folder via "npm install" according to the tutorial.
+
