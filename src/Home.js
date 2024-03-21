@@ -55,6 +55,23 @@ const Home = () => {
         { title: "Gamedev Portfolio", body: "adipiscing elit...", author: "ah", id: 4 }
     ]);
 
+    // Method to delete a blog post by id. This will be passed into BlogList as a prop
+    const blogDelete = (id) => {
+        console.log(`Blog id ${id} is to be deleted.`);
+
+        // To "delete" a blog post by id, we will use the filter method to create a copy of 
+        // the blogs array WITHOUT the blog with the passed-in id.
+        const newBlogs = blogs.filter((blog) => (blog.id != id));
+
+        // Following that, we use the useState method to set the blogs array to the copy.
+        // (This seems kinda slow though considering we have to do a lot of copying.
+        // What if we had millions of posts? Wouldn't this take forever?)
+        // I suppose it just comes down to using the right data structure, as simple
+        // arrays aren't known for being easy to remove elements from.
+        setBlogs(newBlogs);
+
+    }
+
     return (
         <div className="home">
             <h1>{ title }</h1>
@@ -75,7 +92,7 @@ const Home = () => {
             <p>N = { clicks }.</p>
 
             {/* We will add a BlogList object below which I have turned into its own component */}
-            <BlogList blogs={ blogs } title={ "vvv Blog Posts vvv" } />
+            <BlogList blogs={ blogs } title={ "vvv Blog Posts vvv" } handleDelete={ blogDelete } />
         </div>
     );
 }

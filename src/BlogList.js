@@ -4,11 +4,13 @@
 import { useState } from 'react';
 
 //const BlogList = (props) => {             // One way of receiving props. Another more efficient way is shown below
-const BlogList = ({blogs, title}) => {
+const BlogList = ({blogs, title, handleDelete}) => {
 
     // Using this more efficient way of receiving props, we do not need to declare them as variables 
     //const blogs = props.blogs;
     //const title = props.title;
+
+    
 
     // In order to display each of these blog post previews, we need to use the map function.
     // blogs.map has an array as the caller, and uses an anonymous function. It seems similar to 
@@ -27,6 +29,11 @@ const BlogList = ({blogs, title}) => {
                         <h3>{ blog.title }</h3>
                         <p>{ blog.body }</p>
                         <p>By { blog.author }</p>
+                        <button onClick={() => {
+                            // Call the handleDelete function with the corresponding blog's id as the argument.
+                            // Recall that this div is one of many, and blog.id represents the CURRENT div and nothing more.
+                            handleDelete(blog.id);
+                        }}>Delete Post</button>
                     </div>
                 ))
             }
