@@ -1,7 +1,7 @@
 // A BlogList is a paragraph followed by a list of blog posts. We will be using useState hooks to dynamically
 // change the blog posts, this way we don't have to hard code each div every single time.
 
-import { useState } from 'react';
+//import { useState } from 'react';
 
 //const BlogList = (props) => {             // One way of receiving props. Another more efficient way is shown below
 const BlogList = ({blogs, title, handleDelete}) => {

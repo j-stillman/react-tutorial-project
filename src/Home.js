@@ -5,7 +5,9 @@ import BlogList from './BlogList';
 // the variable title = "Webpage Name" is inserted into the h1 tags.
 // But if we changed the title value, the title on the webpage wouldn't change.
 // To fix this, we need to make the variables "reactive" to changes. That's where the useState hook comes in.
-import { useState } from 'react'
+// In addition, there is also the useEffect hook. This is a function run every time the page is re-rendered.
+// In most cases, the page is re-rendered whenever the state changes (e.g. when we delete a blog post)
+import { useState, useEffect } from 'react'
 
 
 const Home = () => {
@@ -71,6 +73,27 @@ const Home = () => {
         setBlogs(newBlogs);
 
     }
+
+    // useEffect method is shown below. This is run every time the page is re-rendered
+    // Unlike useState, useEffect does not return anything. We simply pass in an anonymous function to run
+    useEffect(() => {
+        console.log("useEffect() called.");
+        
+        // You also have access to the state variables inside the useEffect() method.
+        // But BE CAREFUL, because if you change the state inside the useEffect somehow, you
+        // may trigger an infinite loop. For example, if you add another blog post here, then 
+        // it will have to re-render as the state has been changed. This will call useEffect, 
+        // which will add ANOTHER blog post, causing a re-render, triggering useEffect again, and so on.
+        console.log(`title set to ${title}.`);
+
+    }, [title]);
+
+    // The array above (inside the useEffect arguments) is a dependency array. When empty, it will 
+    // cause the useEffect function to only be run on the first render. Afterwards, it won't run because
+    // there are no dependencies (i.e. state changes in which useEffect() SHOULD run.) 
+    // To add a dependency, just add the name of the useState you want to "watch". If we put the webpage title
+    // into the dependency, then it will only run useEffect when the title changes (i.e. when you click the 
+    // "Change Name" button)
 
     return (
         <div className="home">
