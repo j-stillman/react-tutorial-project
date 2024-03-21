@@ -20,6 +20,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Home />
+      
 
     {/* Below is the original starter code. Keeping it for reference for now */}
     {/* 

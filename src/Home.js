@@ -1,4 +1,6 @@
 
+import BlogList from './BlogList';
+
 // You may have noticed that variables declared inside a component do NOT change onscreen. For example,
 // the variable title = "Webpage Name" is inserted into the h1 tags.
 // But if we changed the title value, the title on the webpage wouldn't change.
@@ -31,6 +33,28 @@ const Home = () => {
         setClicks(clicks + 1);
     }
 
+    // List of blog posts that we will use and reuse around the project
+    // Note: We will be passing this data (the blogs array) into the child component
+    // <BlogList /> which has been added to the bottom of the HTML/JSX this function returns.
+    // In order to do this, we will use something called props, the purpose of which is just that.
+    // Syntax of props is the following: 
+    //      <BlogList blogs={ blogs } />
+    // The prop must be "received" inside the child component as well. This is done simply by
+    // declaring the parameter "props" inside the component declaration. In the case of the BlogList component,
+    // it will look like the following: 
+    //      const BlogList = (props) => {
+    //          // ...
+    //          const blogs = props.blogs;
+    //          // ...
+    //      } 
+    // At which point we will be able to use the blogs array inside BlogList.
+    const [blogs, setBlogs] = useState([
+        { title: "New Website!", body: "lorem ipsum...", author: "je", id: 1 },
+        { title: "Welcome Party", body: "dolor sit...", author: "re", id: 2 },
+        { title: "React Tutorials", body: "amet, consectetur...", author: "mi", id: 3 },
+        { title: "Gamedev Portfolio", body: "adipiscing elit...", author: "ah", id: 4 }
+    ]);
+
     return (
         <div className="home">
             <h1>{ title }</h1>
@@ -49,6 +73,9 @@ const Home = () => {
                 Increment N
             </button>
             <p>N = { clicks }.</p>
+
+            {/* We will add a BlogList object below which I have turned into its own component */}
+            <BlogList blogs={ blogs } title={ "vvv Blog Posts vvv" } />
         </div>
     );
 }
