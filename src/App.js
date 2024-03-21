@@ -1,5 +1,10 @@
 // import logo from './logo.svg';
-import './App.css';
+
+// Import the CSS file for the app. The App.css file below is applied to the entire root element in the page.
+// It essentially inserts it all as one big style tag if you inspect the webpage. 
+//import './App.css';
+// For now however, we will just use index.css and apply it to the whole page.
+
 import Navbar from './Navbar';
 import Home from './Home';
 
@@ -13,8 +18,8 @@ function App() {
 
   return (
     <div className="App">
-      <Home />
       <Navbar />
+      <Home />
 
     {/* Below is the original starter code. Keeping it for reference for now */}
     {/* 
